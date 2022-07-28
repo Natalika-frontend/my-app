@@ -1,4 +1,4 @@
-import {BrowserRouter as Router,Routes,Route,Link} from 'react-router-dom';
+import {BrowserRouter as Router,Routes,Route} from 'react-router-dom';
 import './App.css';
 import Dialogs from './components/Dialogs/Dialogs';
 import Header from './components/Header/Header';
@@ -8,7 +8,7 @@ import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 
-const App=() => {
+const App=(props) => {
 	return (
 		<div className='app-wrapper'>
 			<Header />
@@ -17,8 +17,8 @@ const App=() => {
 				<Navbar />
 				<div className='app-wrapper-content'>
 					<Routes>
-						<Route path="/dialogs" element={<Dialogs />} />
-						<Route path="/profile" element={<Profile />} />
+						<Route path="/dialogs/*" element={<Dialogs dialogs={props.state.messagePage.dialogs} messages={props.state.profilePage.messages} />} />
+						<Route path="/profile" element={<Profile posts={props.state.messagePage.posts} />} />
 						<Route path="/news" element={<News />} />
 						<Route path="/music" element={<Music />} />
 						<Route path="/settings" element={<Settings />} />
